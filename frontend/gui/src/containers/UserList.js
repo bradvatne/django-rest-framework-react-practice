@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Users from "../components/User.js";
 import axios from "axios";
+import Form from "../components/Form.js";
 
 export class UserList extends Component {
   state = {
@@ -12,14 +13,18 @@ export class UserList extends Component {
       this.setState({
         users: res.data
       });
-      console.log(this.state.users)
+      console.log(this.state.users);
     });
   }
+
 
   render() {
     return (
       <div>
-        <Users data={this.state.users}/>
+        <Users data={this.state.users} />
+        <br />
+        <h2>Add your story</h2>
+        <Form requestType="post" userID={null} buttonText="create" sendState={this.receiveState}/>
       </div>
     );
   }
