@@ -1,3 +1,5 @@
+<h1>THIS IS ADAPTED FROM https://www.youtube.com/watch?v=w-QJiQwlZzU&t=615s ALL CREDIT DUE THERE </h1>
+
 **1. SETTING UP DJANGO W/ REST-FRAMEWORK**
 
 
