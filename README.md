@@ -1,6 +1,6 @@
-<h1>THIS IS ADAPTED FROM 
-  https://www.youtube.com/watch?v=w-QJiQwlZzU&t=615s 
-  THANK YOU JustDjango </h1>
+<h1>THIS IS ADAPTED FROM <br/>
+  https://www.youtube.com/watch?v=w-QJiQwlZzU&t=615s <br/>
+  Thank you JustDjango </h1>
 
 **1. SETTING UP DJANGO W/ REST-FRAMEWORK**
 
