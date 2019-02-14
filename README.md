@@ -1,4 +1,4 @@
-<h1>THIS IS ADAPTED FROM <br/>
+<h1>THESE ARE MY NOTES FROM <br/>
   https://www.youtube.com/watch?v=w-QJiQwlZzU&t=615s <br/>
   Thank you JustDjango </h1>
 
