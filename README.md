@@ -1,9 +1,9 @@
 <h1>THESE ARE MY NOTES FROM <br/>
   https://www.youtube.com/watch?v=w-QJiQwlZzU&t=615s <br/>
   Thank you JustDjango </h1>
-
+  
+  
 **1. SETTING UP DJANGO W/ REST-FRAMEWORK**
-
 
 
 SETUP YOUR [VIRTUAL ENVIRONMENT](https://realpython.com/python-virtual-environments-a-primer/)
@@ -114,7 +114,7 @@ PASS STATE INTO PROPS THAT RENDER DATA
 
 **3. SENDING POSTS**
 
-CREATE A FORM COMPONENT THAT WILL WRAP
+CREATE A [FORM](https://reactjs.org/docs/forms.html) COMPONENT
 
 - This tutorial uses a component library, otherwise you need to remember [two-way binding](https://stackoverflow.com/a/42217730/11052358) on your input fields
 - All input fields need names so they can be accessed through [event](https://developer.mozilla.org/en-US/docs/Web/API/Event)
@@ -132,3 +132,84 @@ CREATE A HANDLER FUNCTION FOR THE FORM SUBMIT
 - Make [your axios call,](https://alligator.io/react/axios-react/) for ex, POST:
   - _axios.post( &#39;url&#39;, data )_
   - You may want to include .then().catch()
+
+
+
+
+
+
+
+
+
+**4.** [**AUTHENTICATION**](https://www.hackterms.com/authentication) **WITH** [**REDUX**](https://redux.js.org/)
+
+- Actions are executed by dispatches and contain objects
+- Reducer reads action type and returns method that updates state
+
+**PART 1 - CREATE ACTIONS FOLDER**
+
+- [Actions](https://redux.js.org/basics/actions#actionsjs) (define what action to handle). In this ex we use:
+  - js
+  - js
+- Define action constants in actionTypes.js
+  - AUTH\_START, AUTH\_SUCCESS, AUTH\_FAIL, AUTH\_LOGOUT
+- Import them into auth.js where you write methods
+
+WRITE YOUR LOGIN AUTHORIZATION METHOD
+
+- Takes username and password as parameters
+- Return an arrow function with [dispatch](https://redux.js.org/basics/actions) parameter
+- Dispatch your AUTH\_START
+  - dispatch(authStart());
+- Call axios post to the login url, passing through an object containing values for username and password
+- Call .then to take the response and run a function
+- Assign a variable to the token from response.data.key
+- Create a variable for the expiration date of said token using new Date()
+- Save items to local storage
+- Dispatch authSuccess with the token as a parameter.
+- Dispatch checkAuthTimeOut with time as the parameter
+- Add a catch for the error which dispatches failure
+
+CREATE YOUR LOGIN AUTHORIZATION DURATION METHOD
+
+- Arrow function taking expirationTime
+- Returns dispatch which returns an arrow function
+- Sets a Timeout equal to the time \* 1000 (because milliseconds)
+- Runs dispatch logout
+
+CREATE YOUR LOGOUT METHOD
+
+- Remove credentials from storage
+  - _localStorage.removeItem(&#39;user&#39;)_
+  - _localStorage.removeItem(&#39;expirationDate&#39;)_
+- Return an object with
+  - _type: actionTypes.AUTH\_LOGOUT_
+
+CREATE A SIGN UP METHOD
+
+- Copy and paste the login method, but add email, password1, and password2 as parameters that get passed to object
+  - These are default requirements of django rest framework
+- Change the post url to registration
+
+CREATE UTILITY.JS IN STORE FOLDER
+
+- This file will contain a method to update objects
+- Takes old objects and updates with new properties
+
+**PART 2 - CREATE YOUR REDUCERS**
+
+-  Create reducers folder with auth.js inside it
+-  Import actiontypes and updateobjects into it
+-  Create initial state object with token, error, loading properties
+
+- Each function should correspond with an action
+- These functions will take state and action as parameter
+- They will return updateObject according to their action and what they are intended to do to the state.
+  - Can access token with action.token
+
+CREATE MAIN REDUCER
+
+- Takes state=initialState and action as parameters
+- Switch case through all the reducer functions depending on action type
+- Passes state and action through as parameteres
+- Export this function
